@@ -59,10 +59,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .character-of-the-day {
   text-align: center;
+  width: 100%;
+}
+
+.character-of-the-day img {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  margin-bottom: 10px;
 }
 
 @media screen and (max-width: 1920px) {
