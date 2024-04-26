@@ -49,11 +49,56 @@ function Comics() {
           </div>
         </nav>
       </header>
-      <main className="container my-5">
-        <div>
-            <img src={marvelLogo} class="img-thumbnail" alt="..."/>
-        </div>
-
+      <main className="container my-10">
+      <div className="box1">
+            <div className="Rectangle21" style={{width: 290, height: 361, left: 125, top: 175, position: 'absolute'}}>
+            <div className="Rectangle11" style={{width: 290, height: 361, left: 0, top: 0, position: 'absolute', background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
+            <div className="ComicTitle" style={{left: 50, top: 371, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>
+              Comic Title
+              </div>
+              </div>
+            <div className="Rectangle21" style={{width: 290, height: 361, left: 450, top: 175, position: 'absolute'}}>
+            <div className="Rectangle11" style={{width: 290, height: 361, left: 0, top: 0, position: 'absolute', background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
+            <div className="ComicTitle" style={{left: 50, top: 371, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>
+              Comic Title
+              </div>
+              </div>
+            <div className="Rectangle21" style={{width: 290, height: 361, left: 775, top: 175, position: 'absolute'}}>
+            <div className="Rectangle11" style={{width: 290, height: 361, left: 0, top: 0, position: 'absolute', background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
+            <div className="ComicTitle" style={{left: 50, top: 371, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>
+              Comic Title
+              </div>
+              </div>
+            <div className="Rectangle21" style={{width: 290, height: 361, left: 1100, top: 175, position: 'absolute'}}>
+            <div className="Rectangle11" style={{width: 290, height: 361, left: 0, top: 0, position: 'absolute', background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
+            <div className="ComicTitle" style={{left: 50, top: 371, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>
+              Comic Title
+              </div>
+              </div>
+              <div className="Rectangle21" style={{width: 290, height: 361, left: 125, top: 650, position: 'absolute'}}>
+            <div className="Rectangle11" style={{width: 290, height: 361, left: 0, top: 0, position: 'absolute', background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
+            <div className="ComicTitle" style={{left: 50, top: 371, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>
+              Comic Title
+              </div>
+              </div>
+            <div className="Rectangle21" style={{width: 290, height: 361, left: 450, top: 650, position: 'absolute'}}>
+            <div className="Rectangle11" style={{width: 290, height: 361, left: 0, top: 0, position: 'absolute', background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
+            <div className="ComicTitle" style={{left: 50, top: 371, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>
+              Comic Title
+              </div>
+              </div>
+            <div className="Rectangle21" style={{width: 290, height: 361, left: 775, top: 650, position: 'absolute'}}>
+            <div className="Rectangle11" style={{width: 290, height: 361, left: 0, top: 0, position: 'absolute', background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
+            <div className="ComicTitle" style={{left: 50, top: 371, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>
+              Comic Title
+              </div>
+              </div>
+            <div className="Rectangle21" style={{width: 290, height: 361, left: 1100, top: 650, position: 'absolute'}}>
+            <div className="Rectangle11" style={{width: 290, height: 361, left: 0, top: 0, position: 'absolute', background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
+            <div className="ComicTitle" style={{left: 50, top: 371, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>
+              Comic Title
+              </div>
+              </div>
         <div className="row mt-4">
           {comics.map((comic, index) => (
             <div key={comic.id} className="col-3">
@@ -73,6 +118,7 @@ function Comics() {
               </div>
             </div>
           ))}
+        </div>
         </div>
       </main>
     </div>

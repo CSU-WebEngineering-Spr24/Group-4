@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Comics from './pages/Comics';
 import Characters from './pages/Characters';
-import Series from './pages/Series';
 
 function App() {
   return (
@@ -14,7 +13,6 @@ function App() {
           <Routes>
             <Route path="/comics" element={<Comics />} />
             <Route path="/characters" element={<Characters />} />
-            <Route path="/series" element={<Series />} />
             <Route path="/" element={<Home />} />
           </Routes>
         </main>
