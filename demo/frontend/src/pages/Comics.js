@@ -1,74 +1,82 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
-import marvelLogo from '../images/MarvelLogo.png'
+import marvelLogo from '../images/MarvelLogo.png';
+import { getComics } from '../services/marvelApi';
 
-function Comics (){
-    return (
-        <div className="Page3" style={{width: 1922, height: 1080, position: 'relative'}}>
-        <div className="Rectangle1" style={{width: 1920, height: 1080, left: 0, top: 0, position: 'absolute', background: '#D9D9D9', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.50)', border: '1px black solid'}} />
-        <div className="Rectangle2" style={{width: 1920, height: 165, left: 2, top: 0, position: 'absolute', background: 'black'}} />
-        <div className="Home" style={{left: 127, top: 80, position: 'absolute', color: 'white', fontSize: 32, fontFamily: 'Comic Sans MS', fontWeight: '400', wordWrap: 'break-word'}}> 
-            <Link to="/" className="text-light text-decoration-none mx-3"> 
+function Comics() {
+    const [comics, setComics] = useState([]);
+
+  useEffect(() => {
+    const fetchComics = async () => {
+      try {
+        const data = await getComics();
+        setComics(data.data.results);
+      } catch (error) {
+        console.error('Error fetching comics:', error);
+      }
+    };
+
+     fetchComics();
+  }, []);
+  
+
+  return (
+    <div className="home-container">
+      <header className="header">
+        <nav className="container d-flex justify-content-between align-items-center">
+          <div className="label">
+            <div className="text-wrapper">
+              <Link to="/" className="text-light text-decoration-none mx-3">
                 Home
               </Link>
-              </div>
-        <div className="Comics" style={{left: 284, top: 82, position: 'absolute', color: 'white', fontSize: 32, fontFamily: 'Comic Sans MS', fontWeight: '400', wordWrap: 'break-word'}}>
-            <Link to="/comics" className="text-light text-decoration-none mx-3">
+              <Link to="/comics" className="text-light text-decoration-none mx-3">
                 Comics
-            </Link>
+              </Link>
+              <Link to="/characters" className="text-light text-decoration-none mx-3">
+                Characters
+              </Link>
+            </div>
+          </div>
+    
+            <div className="image">
+              <img className="download" alt="Marvel Logo" src={marvelLogo} />
+            </div>
+          
+          <div className="d-flex">
+            <input type="text" id="search" className="form-control" placeholder="Search" />
+            <button className="btn btn-light">Search</button>
+          </div>
+        </nav>
+      </header>
+      <main className="container my-5">
+        <div>
+            <img src={marvelLogo} class="img-thumbnail" alt="..."/>
+        </div>
+
+        <div className="row mt-4">
+          {comics.map((comic, index) => (
+            <div key={comic.id} className="col-3">
+              <div className="card">
+              {comic.thumbnail && comic.thumbnail.path !== 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available' ? (
+                <img
+                  src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                  className="card-img-top"
+                  alt={comic.title}
+                />
+              ) : (
+                <div className="card-img-top placeholder-image">No Image Available</div>
+              )}
+                <div className="card-body">
+                  <h5 className="card-title">{comic.title}</h5>
+                </div>
               </div>
-        <div className="Characters" style={{left: 464, top: 82, position: 'absolute', color: 'white', fontSize: 32, fontFamily: 'Comic Sans MS', fontWeight: '400', wordWrap: 'break-word'}}>
-            <Link to="/characters" className="text-light text-decoration-none mx-3">Characters</Link>
-              </div>
-        <div className="Search" style={{left: 1432, top: 80, position: 'absolute', color: 'black', fontSize: 20, fontFamily: 'Comic Sans MS', fontWeight: '400', wordWrap: 'break-word'}}>Search</div>
-        <div className="Rectangle3" style={{width: 313, height: 54, left: 1413, top: 67, position: 'absolute', background: 'white'}} />
-        <div className="Rectangle5" style={{width: 132, height: 54, left: 1761, top: 65, position: 'absolute', background: '#D9D9D9'}} />
-        <div className="Search" style={{left: 1793, top: 78, position: 'absolute', color: 'black', fontSize: 20, fontFamily: 'Comic Sans MS', fontWeight: '400', wordWrap: 'break-word'}}>Search</div>
-        <div className="Rectangle16" style={{width: 290, height: 361, left: 139, top: 666, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', gap: 10, display: 'inline-flex'}}>
-        <div className="Rectangle11" style={{width: 290, height: 361, background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
-        <div className="ComicTitle" style={{textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>Comic Title</div>
+            </div>
+          ))}
+        </div>
+      </main>
     </div>
-        <div className="Rectangle20" style={{width: 290, height: 361, left: 1491, top: 235, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', gap: 10, display: 'inline-flex'}}>
-        <div className="Rectangle11" style={{width: 290, height: 361, background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
-        <div className="ComicTitle" style={{textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>Comic Title</div>
-    </div>
-        <div className="Rectangle18" style={{width: 290, height: 361, left: 1061, top: 235, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', gap: 10, display: 'inline-flex'}}>
-        <div className="Rectangle11" style={{width: 290, height: 361, background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
-        <div className="ComicTitle" style={{textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>Comic Title</div>
-    </div>
-        <div className="Rectangle15" style={{width: 290, height: 361, left: 607, top: 235, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', gap: 10, display: 'inline-flex'}}>
-        <div className="Rectangle11" style={{width: 290, height: 361, background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
-        <div className="ComicTitle" style={{textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>Comic Title</div>
-    </div>
-        <div className="Rectangle11" style={{width: 290, height: 361, left: 139, top: 235, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', gap: 10, display: 'inline-flex'}}>
-        <div className="Rectangle11" style={{width: 290, height: 361, background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
-        <div className="ComicTitle" style={{textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>Comic Title</div>
-    </div>
-        <div className="Rectangle21" style={{width: 290, height: 361, left: 1491, top: 666, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', gap: 10, display: 'inline-flex'}}>
-        <div className="Rectangle11" style={{width: 290, height: 361, background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
-        <div className="ComicTitle" style={{textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>Comic Title</div>
-    </div>
-        <div className="Rectangle19" style={{width: 290, height: 361, left: 1061, top: 666, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', gap: 10, display: 'inline-flex'}}>
-        <div className="Rectangle11" style={{width: 290, height: 361, background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
-        <div className="ComicTitle" style={{textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>Comic Title</div>
-    </div>
-        <div className="Rectangle17" style={{width: 290, height: 361, left: 607, top: 666, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', gap: 10, display: 'inline-flex'}}>
-        <div className="Rectangle11" style={{width: 290, height: 361, background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
-        <div className="ComicTitle" style={{textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>Comic Title</div>
-    </div>
-        <div className="ComicWillGoHere" style={{left: 193, top: 821, position: 'absolute', color: 'black', fontSize: 20, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>*comic will go here</div>
-        <div className="ComicWillGoHere" style={{left: 1545, top: 398, position: 'absolute', color: 'black', fontSize: 20, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>*comic will go here</div>
-        <div className="ComicWillGoHere" style={{left: 1115, top: 396, position: 'absolute', color: 'black', fontSize: 20, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>*comic will go here</div>
-        <div className="ComicWillGoHere" style={{left: 662, top: 391, position: 'absolute', color: 'black', fontSize: 20, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>*comic will go here</div>
-        <div className="ComicWillGoHere" style={{left: 193, top: 386, position: 'absolute', color: 'black', fontSize: 20, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>*comic will go here</div>
-        <div className="ComicWillGoHere" style={{left: 1545, top: 834, position: 'absolute', color: 'black', fontSize: 20, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>*comic will go here</div>
-        <div className="ComicWillGoHere" style={{left: 1115, top: 835, position: 'absolute', color: 'black', fontSize: 20, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>*comic will go here</div>
-        <div className="ComicWillGoHere" style={{left: 662, top: 828, position: 'absolute', color: 'black', fontSize: 20, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>*comic will go here</div>
-        <div className="Line1" style={{width: 103, height: 0, left: 300, top: 125, position: 'absolute', border: '5px #E40101 solid'}}></div>
-        <img className="download" style={{width: 354, height: 142, left: 785, top: 11, position: 'absolute'}} alt="Marvel Logo" src={marvelLogo} />     
-    </div>
-    );
+  );
 }
 
-export default Comics;
+export default Comics
