@@ -7,6 +7,16 @@ import { getComics, getRandomCharacter } from '../services/marvelApi';
 function Home() {
   const [comics, setComics] = useState([]);
   const [characterOfTheDay, setCharacterOfTheDay] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSearch = () => {
+      if (searchQuery) {
+        // Construct the URL for the search results page with the search query as a URL parameter
+        const searchUrl = `/search?q=${encodeURIComponent(searchQuery)}`;
+        // Redirect the user to the search results page
+        window.location.href = searchUrl;
+      }
+    };
 
   useEffect(() => {
     const fetchComics = async () => {
@@ -30,7 +40,6 @@ function Home() {
     fetchComics();
     fetchCharacterOfTheDay();
   }, []);
-  
 
   return (
     <div className="home-container">
@@ -49,14 +58,21 @@ function Home() {
               </Link>
             </div>
           </div>
-    
-            <div className="image">
-              <img className="download" alt="Marvel Logo" src={marvelLogo} />
-            </div>
-          
+
+          <div className="image">
+            <img className="download" alt="Marvel Logo" src={marvelLogo} />
+          </div>
+
           <div className="d-flex">
-            <input type="text" id="search" className="form-control" placeholder="Search" />
-            <button className="btn btn-light">Search</button>
+            <input
+              type="text"
+              id="search"
+              className="form-control"
+              placeholder="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button className="btn btn-light" onClick={handleSearch}>Search</button>
           </div>
         </nav>
       </header>
@@ -69,10 +85,10 @@ function Home() {
                 <div>
                   <h3>{characterOfTheDay.name}</h3>
                   {characterOfTheDay.thumbnail && characterOfTheDay.thumbnail.path !== 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available' && (
-                  <img
-                    src={`${characterOfTheDay.thumbnail.path}.${characterOfTheDay.thumbnail.extension}`}
-                    alt={characterOfTheDay.name}
-                  />
+                    <img
+                      src={`${characterOfTheDay.thumbnail.path}.${characterOfTheDay.thumbnail.extension}`}
+                      alt={characterOfTheDay.name}
+                    />
                   )}
                   <p>{characterOfTheDay.description}</p>
                 </div>
@@ -87,15 +103,15 @@ function Home() {
           {comics.map((comic, index) => (
             <div key={comic.id} className="col-3">
               <div className="card">
-              {comic.thumbnail && comic.thumbnail.path !== 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available' ? (
-                <img
-                  src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-                  className="card-img-top"
-                  alt={comic.title}
-                />
-              ) : (
-                <div className="card-img-top placeholder-image">No Image Available</div>
-              )}
+                {comic.thumbnail && comic.thumbnail.path !== 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available' ? (
+                  <img
+                    src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                    className="card-img-top"
+                    alt={comic.title}
+                  />
+                ) : (
+                  <div className="card-img-top placeholder-image">No Image Available</div>
+                )}
                 <div className="card-body">
                   <h5 className="card-title">{comic.title}</h5>
                 </div>
