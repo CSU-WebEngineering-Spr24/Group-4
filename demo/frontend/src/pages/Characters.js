@@ -23,7 +23,7 @@ function Characters (){
                   </div>
             
                     <div className="image">
-                    <a href="/"><img src={marvelLogo} alt="Marvel Logo" /></a>
+                    <a href="/"><img className='download' src={marvelLogo} alt="Marvel Logo" /></a>
                     </div>
                   
                   <div className="d-flex">

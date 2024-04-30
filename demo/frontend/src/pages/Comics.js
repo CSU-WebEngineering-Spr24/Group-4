@@ -18,7 +18,6 @@ function Comics() {
             }
         };
 
-
         fetchComics();
     }, []);
 
@@ -42,7 +41,7 @@ function Comics() {
                     </div>
 
                     <div className="image">
-                        <img className="download" alt="Marvel Logo" src={marvelLogo} />
+                        <a href="/"><img className="download" alt="Marvel Logo" src={marvelLogo}/></a>
                     </div>
 
                     <div className="d-flex">
@@ -51,12 +50,12 @@ function Comics() {
                     </div>
                 </nav>
             </header>
-            <main className="container my-5" style={{position: "relative", top: 175}}>
-                <div className="row mt-4" >
+            <main className="container my-5" style={{position: "absolute", top: 125}}>
+                <div className="card flex-md-row mb-4 box-shadow h-md-250" style={{position: "relative", left: 5, right: 5}}>
                     {comics && comics.map((comic, index) => (
                         <div key={comic.id} className="col-3">
-                            <div className="card">
-                                {comic.thumbnail && comic.thumbnail.path !== 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available' ? (
+                            <div className="spinner">
+                                {comic.thumbnail && comic.thumbnail.path !== comic.thumbnail.extension ? (
                                     <img
                                         src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
                                         className="card-img-top"
