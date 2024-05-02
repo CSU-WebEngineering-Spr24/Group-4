@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 import marvelLogo from '../images/MarvelLogo.png';
+import noImage from '../images/standard_incredible.jpg';
 import { getComics, getRandomCharacter } from '../services/marvelApi';
 
 function Home() {
@@ -60,13 +61,13 @@ function Home() {
           </div>
 
           <div className="image">
-            <img className="download" alt="Marvel Logo" src={marvelLogo} />
+            <a href="/"><img className="download" alt="Marvel Logo" src={marvelLogo}/></a>
           </div>
 
           <div className="d-flex">
             <input
-              type="text"
-              id="search"
+                type="text"
+                id="search"
               className="form-control"
               placeholder="Search"
               value={searchQuery}
@@ -84,11 +85,14 @@ function Home() {
               {characterOfTheDay ? (
                 <div>
                   <h3>{characterOfTheDay.name}</h3>
-                  {characterOfTheDay.thumbnail && characterOfTheDay.thumbnail.path !== 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available' && (
+                  {characterOfTheDay.thumbnail && characterOfTheDay.thumbnail.path ? (
                     <img
                       src={`${characterOfTheDay.thumbnail.path}.${characterOfTheDay.thumbnail.extension}`}
-                      alt={characterOfTheDay.name}
+                      className="card-img-top"
+                      alt={noImage}
                     />
+                  ) : (
+                      <div className="card-img-top placeholder-image">No Image Available</div>
                   )}
                   <p>{characterOfTheDay.description}</p>
                 </div>
@@ -103,11 +107,11 @@ function Home() {
           {comics.map((comic, index) => (
             <div key={comic.id} className="col-3">
               <div className="card">
-                {comic.thumbnail && comic.thumbnail.path !== 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available' ? (
+                {comic.thumbnail && comic.thumbnail.path ? (
                   <img
                     src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
                     className="card-img-top"
-                    alt={comic.title}
+                    alt={noImage}
                   />
                 ) : (
                   <div className="card-img-top placeholder-image">No Image Available</div>

@@ -1,89 +1,118 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
-import marvelLogo from '../images/MarvelLogo.png'
+import marvelLogo from '../images/MarvelLogo.png';
+import { getCharacters } from '../services/marvelApi';
 
-function Characters (){
-        return (
-            <div className="home-container">
-              <header className="header">
-                <nav className="container d-flex justify-content-between align-items-center">
-                  <div className="label">
-                    <div className="text-wrapper">
-                      <Link to="/" className="text-light text-decoration-none mx-3">
-                        Home
-                      </Link>
-                      <Link to="/comics" className="text-light text-decoration-none mx-3">
-                        Comics
-                      </Link>
-                      <Link to="/characters" className="text-light text-decoration-none mx-3">
-                        Characters
-                      </Link>
-                    </div>
-                  </div>
-            
-                    <div className="image">
-                    <a href="/"><img className='download' src={marvelLogo} alt="Marvel Logo" /></a>
-                    </div>
-                  
-                  <div className="d-flex">
-                    <input type="text" id="search" className="form-control" placeholder="Search" />
-                    <button className="btn btn-light">Search</button>
-                  </div>
-                </nav>
-              </header>
-              <main className="container my-5">
-              <div className="Rectangle21" style={{width: 290, height: 361, left: 125, top: 175, position: 'absolute'}}>
-            <div className="Rectangle11" style={{width: 290, height: 361, left: 0, top: 0, position: 'absolute', background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
-            <div className="ComicTitle" style={{left: 50, top: 371, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>
-              Character
-              </div>
-              </div>
-            <div className="Rectangle21" style={{width: 290, height: 361, left: 450, top: 175, position: 'absolute'}}>
-            <div className="Rectangle11" style={{width: 290, height: 361, left: 0, top: 0, position: 'absolute', background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
-            <div className="ComicTitle" style={{left: 50, top: 371, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>
-              Character
-              </div>
-              </div>
-            <div className="Rectangle21" style={{width: 290, height: 361, left: 775, top: 175, position: 'absolute'}}>
-            <div className="Rectangle11" style={{width: 290, height: 361, left: 0, top: 0, position: 'absolute', background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
-            <div className="ComicTitle" style={{left: 50, top: 371, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>
-              Character
-              </div>
-              </div>
-            <div className="Rectangle21" style={{width: 290, height: 361, left: 1100, top: 175, position: 'absolute'}}>
-            <div className="Rectangle11" style={{width: 290, height: 361, left: 0, top: 0, position: 'absolute', background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
-            <div className="ComicTitle" style={{left: 50, top: 371, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>
-              Character
-              </div>
-              </div>
-              <div className="Rectangle21" style={{width: 290, height: 361, left: 125, top: 650, position: 'absolute'}}>
-            <div className="Rectangle11" style={{width: 290, height: 361, left: 0, top: 0, position: 'absolute', background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
-            <div className="ComicTitle" style={{left: 50, top: 371, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>
-              Character
-              </div>
-              </div>
-            <div className="Rectangle21" style={{width: 290, height: 361, left: 450, top: 650, position: 'absolute'}}>
-            <div className="Rectangle11" style={{width: 290, height: 361, left: 0, top: 0, position: 'absolute', background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
-            <div className="ComicTitle" style={{left: 50, top: 371, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>
-              Character
-              </div>
-              </div>
-            <div className="Rectangle21" style={{width: 290, height: 361, left: 775, top: 650, position: 'absolute'}}>
-            <div className="Rectangle11" style={{width: 290, height: 361, left: 0, top: 0, position: 'absolute', background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
-            <div className="ComicTitle" style={{left: 50, top: 371, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>
-            Character
-              </div>
-              </div>
-            <div className="Rectangle21" style={{width: 290, height: 361, left: 1100, top: 650, position: 'absolute'}}>
-            <div className="Rectangle11" style={{width: 290, height: 361, left: 0, top: 0, position: 'absolute', background: '#B5B4B4', boxShadow: '5px 4px 4px rgba(0, 0, 0, 0.50)'}} />
-            <div className="ComicTitle" style={{left: 50, top: 371, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 40, fontFamily: 'Comic Neue', fontWeight: '400', wordWrap: 'break-word'}}>
-            Character
-              </div>
-              </div>
-              </main>
-            </div>
-          );
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function Characters() {
+    const [characters, setCharacters] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSearch = () => {
+        if (searchQuery) {
+            // Construct the URL for the search results page with the search query as a URL parameter
+            const searchUrl = `/search?q=${encodeURIComponent(searchQuery)}`;
+            // Redirect the user to the search results page
+            window.location.href = searchUrl;
         }
+    };
+
+    useEffect(() => {
+        const fetchCharacters = async () => {
+            try {
+                const data = await getCharacters();
+                if (data && data.data && data.data.results) {
+                    const shuffledCharacters = shuffleArray(data.data.results);
+                    setCharacters(shuffledCharacters);
+                } else {
+                    throw new Error('Invalid data received');
+                }
+            } catch (error) {
+                console.error('Error fetching random character:', error);
+            } finally {
+                setLoading(false); // Update loading state regardless of success or error
+            }
+        };
+        fetchCharacters();
+    }, []);
+
+    return (
+        <div className="home-container">
+            <header className="header">
+                <nav className="container d-flex justify-content-between align-items-center">
+                    <div className="label">
+                        <div className="text-wrapper">
+                            <Link to="/" className="text-light text-decoration-none mx-3">
+                                Home
+                            </Link>
+                            <Link to="/comics" className="text-light text-decoration-none mx-3">
+                                Comics
+                            </Link>
+                            <Link to="/characters" className="text-light text-decoration-none mx-3">
+                                Characters
+                            </Link>
+                        </div>
+                    </div>
+
+                    <div className="image">
+                        <a href="/"><img className='download' src={marvelLogo} alt="Marvel Logo"/></a>
+                    </div>
+
+                    <div className="d-flex">
+                        <input
+                            type="text"
+                            id="search"
+                            className="form-control"
+                            placeholder="Search"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        <button className="btn btn-light" onClick={handleSearch}>Search</button>
+                    </div>
+                </nav>
+            </header>
+            <main className="container my-5" style={{position: "absolute", top: 125}}>
+                <div className="card flex-md-row mb-4 box-shadow h-md-250"
+                     style={{position: "relative", left: 5, right: 5}}>
+                    {loading ? (
+                        <div className="spinner-border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                </div>
+            ) : characters.length > 0 ? (
+                characters.map(character => (
+                    <div key={character.id} className="col-3">
+                        {character.thumbnail && character.thumbnail.path !== character.thumbnail.extension ? (
+                            <img
+                                src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                                className="card-img-top"
+                                alt={character.name}
+                            />
+                        ) : (
+                            <div className="card-img-top placeholder-image">No Image Available</div>
+                        )}
+                        <div className="card-body">
+                            <h5 className="card-title">{character.name}</h5>
+                            <p className="card-text">{character.description}</p>
+                            <a href={`${character.thumbnail.path}.${character.thumbnail.extension}`} className="btn btn-primary">See Image</a>
+                        </div>
+                    </div>
+                ))
+            ) : (
+                <div>No characters available</div>
+            )}
+                </div>
+            </main>
+        </div>
+    );
+}
 
 export default Characters;

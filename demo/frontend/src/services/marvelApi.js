@@ -13,7 +13,7 @@ const getHash = () => {
 const getComics = async () => {
     try {
         const hash = getHash();
-        const apiURL = `http://gateway.marvel.com/v1/public/comics?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`;
+        const apiURL = `http://gateway.marvel.com/v1/public/comics?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&orderBy=modified&limit=100`;
         const response = await axios.get(apiURL);
         return response.data;
     } catch (error) {
@@ -37,4 +37,16 @@ const getRandomCharacter = async () => {
     }
 };
 
-export { getComics, getRandomCharacter };
+const getCharacters = async () => {
+    try {
+        const hash = getHash();
+        const apiURL = `http://gateway.marvel.com/v1/public/characters?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&orderBy=modified&limit=100`;
+        const response = await axios.get(apiURL);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching comics:', error);
+        throw error;
+    }
+};
+
+export { getComics, getRandomCharacter, getCharacters };
