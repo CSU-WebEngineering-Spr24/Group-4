@@ -102,7 +102,7 @@ function Characters() {
                                 {character.thumbnail && character.thumbnail.path !== "path/to/empty/image" ? (
                                     <img
                                         src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                                        className="card-img-top"
+                                        className="card-img-top custom-image-size"
                                         alt={character.name}
                                     />
                                 ) : (
