@@ -114,9 +114,8 @@ function SearchResults() {
               />
               <div className="card-body">
                 <h5 className="card-title">{character.name}</h5>
-                <Link to={`/characters/${character.id}`} className="btn btn-primary">
-                  View Details
-                </Link>
+                <a href={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                   className="btn btn-primary">See Image</a>
               </div>
             </div>
           </div>
@@ -125,8 +124,8 @@ function SearchResults() {
     </div>
   )}
 
-  {comics.length > 0 && (
-    <div className="comics-results">
+      {comics.length > 0 && (
+          <div className="comics-results">
       <h3>Comics</h3>
       <div className="row">
         {comics.map((comic) => (
@@ -139,18 +138,17 @@ function SearchResults() {
               />
               <div className="card-body">
                 <h5 className="card-title">{comic.title}</h5>
-                <Link to={`/comics/${comic.id}`} className="btn btn-primary">
-                  View Details
-                </Link>
+                <a href={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                   className="btn btn-primary">See Image</a>
               </div>
             </div>
           </div>
         ))}
       </div>
-    </div>
-  )}
+          </div>
+      )}
 
-  {characters.length === 0 && comics.length === 0 && (
+      {characters.length === 0 && comics.length === 0 && (
     <p>No results found.</p>
   )}
 </main>
