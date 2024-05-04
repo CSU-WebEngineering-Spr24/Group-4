@@ -80,3 +80,11 @@
     max-width: 100%;
   }
 }
+.custom-image-size {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+}
