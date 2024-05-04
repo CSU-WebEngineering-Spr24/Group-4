@@ -49,4 +49,28 @@ const getCharacters = async () => {
     }
 };
 
-export { getComics, getRandomCharacter, getCharacters };
+const searchCharacters = async (query) => {
+    try {
+        const hash = getHash();
+        const apiURL = `http://gateway.marvel.com/v1/public/characters?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&nameStartsWith=${encodeURIComponent(query)}`;
+        const response = await axios.get(apiURL);
+        return response.data;
+    } catch (error) {
+        console.error('Error searching characters:', error);
+        throw error;
+    }
+};
+
+const searchComics = async (query) => {
+    try {
+        const hash = getHash();
+        const apiURL = `http://gateway.marvel.com/v1/public/comics?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&titleStartsWith=${encodeURIComponent(query)}`;
+        const response = await axios.get(apiURL);
+        return response.data;
+    } catch (error) {
+        console.error('Error searching comics:', error);
+        throw error;
+    }
+};
+
+export { getComics, getRandomCharacter, getCharacters, searchCharacters, searchComics };

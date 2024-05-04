@@ -15,7 +15,7 @@ function App() {
             <Route path="/comics" element={<Comics />} />
             <Route path="/characters" element={<Characters />} />
             <Route path="/" element={<Home />} />
-            <Route path="/search" component={SearchResults} />
+            <Route path="/search" element={<SearchResults />} />
           </Routes>
         </main>
       </div>

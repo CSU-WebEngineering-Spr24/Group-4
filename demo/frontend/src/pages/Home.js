@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Home.css';
 import marvelLogo from '../images/MarvelLogo.png';
 import noImage from '../images/standard_incredible.jpg';
@@ -9,13 +9,13 @@ function Home() {
   const [comics, setComics] = useState([]);
   const [characterOfTheDay, setCharacterOfTheDay] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
 
     const handleSearch = () => {
-      if (searchQuery) {
+      if (searchQuery.trim() !== '') {
         // Construct the URL for the search results page with the search query as a URL parameter
-        const searchUrl = `/search?q=${encodeURIComponent(searchQuery)}`;
+        navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
         // Redirect the user to the search results page
-        window.location.href = searchUrl;
       }
     };
 
@@ -68,10 +68,10 @@ function Home() {
             <input
                 type="text"
                 id="search"
-              className="form-control"
-              placeholder="Search"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+                className="form-control"
+                placeholder="Search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
             />
             <button className="btn btn-light" onClick={handleSearch}>Search</button>
           </div>
